@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { fetchTodos, fetchUsers } from './actions'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
+import TodoEdit from './pages/TodoEdit'
 import UserTodos from './pages/UserTodos'
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
       <Navbar />
       <div className="container mt-5">
         <Switch>
+          <Route path="/todo/:todoId">
+            <TodoEdit />
+          </Route>
           <Route path="/users/:userId">
             <UserTodos />
           </Route>

@@ -4,6 +4,18 @@ export const addTodo = payload => {
     payload: payload
   }
 }
+export const changeTodoState = payload => {
+  return { 
+    type: 'CHANGE_TODO_STATE',
+    payload: payload
+  }
+}
+export const changeTodoTitle = payload => {
+  return { 
+    type: 'CHANGE_TODO_TITLE',
+    payload: payload
+  }
+}
 export const fetchTodos = payload => {
   return { 
     type: 'FETCH_TODOS',

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { removeTodos } from '../actions'
+import { changeTodoState, removeTodos } from '../actions'
 
 const Todo = ({todo, user}) => {
   const dispatch = useDispatch()
@@ -10,16 +10,18 @@ const Todo = ({todo, user}) => {
     <li key={todo.id} className="list-group-item todo" aria-current="true">
 
       <div>
-        {
-          todo.completed ? 
-            <span className='todo__completed text-success'>
-              Завершено 
-            </span>
-          : 
-            <span className='todo__completed text-warning'>
-              Незавершено 
-            </span>
-        }
+        <div className="todo__completed" onClick={() => dispatch( changeTodoState(todo.id) )} >
+          {
+            todo.completed ? 
+              <span className='text-success'>
+                Завершено 
+              </span>
+            : 
+              <span className='text-warning'>
+                Незавершено 
+              </span>
+          }
+        </div>
 
         <Link to={`/users/${todo.userId}`} className='todo__user'>
           {user.name!=='undefined' &&
