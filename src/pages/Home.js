@@ -1,32 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Form } from '../components/Form'
+import { useSelector } from 'react-redux'
 import TodoList from '../components/TodoList'
 
-const Home = () => {
-  const [todolist, setTodosList]= useState([])
-  const urlTodoList = 'http://jsonplaceholder.typicode.com/todos?_limit=50'
-
-  const [users, setUsers]= useState([])
-  const urlUsers = 'http://jsonplaceholder.typicode.com/users?_limit=50'
-
-
-  useEffect(() => {
-    fetch(urlTodoList)
-      .then(res => res.json())
-      .then(res => {
-        setTimeout(() => {
-          setTodosList(res)
-        })
-      })
-    
-    fetch(urlUsers)
-      .then(res => res.json())
-      .then(res => {
-        setTimeout(() => {
-          setUsers(res)
-        })
-      })
-  }, [])
+function Home() {
+  const todos = useSelector(state => state.axiosTodos)
+  const users = useSelector(state => state.axiosUsers)
 
   return (
     <div className="py-5">
@@ -34,8 +13,8 @@ const Home = () => {
 
       <hr/>
 
-      { (todolist.length !== 0 && users.length !== 0) && 
-        <TodoList todolist={todolist} users={users} /> 
+      { (todos.length !== 0 && users.length !== 0) && 
+        <TodoList todolist={todos} users={users} /> 
       }
     </div>
   )
